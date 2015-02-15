@@ -73,16 +73,20 @@
         - mytop
         
     ##
-    # LAMP Stack
+    # LAMP Stack, with all the bells-and-whistles we like
     #
     - include: tasks/apache.yml
     - include: tasks/mysql.yml
     - include: tasks/php.yml
 
     ##
-    # Solr-Undertow
+    # Drush for Drupal
     #
+    - include: tasks/drush.yml
 
+    ##
+    # Java 8
+    #
 
     ##
     # add-apt-repository ppa:webupd8team/java
