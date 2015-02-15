@@ -1,0 +1,116 @@
+---
+- hosts: all
+  sudo: true
+  roles: 
+  - { role: bennojoy.mongo_mongod } 
+  
+  vars_files:
+    - config.yml
+
+  tasks:
+    
+    ##
+    # Set hostname
+    #
+    - name: Set hostname
+      hostname: name={{ machine_hostname }}
+
+    # NOT IDEMPOTENT !!!
+    - shell: echo >> /etc/hosts
+    - shell: echo \# Extra entries >> /etc/hosts
+    - shell: echo 127.0.0.1 {{ machine_hostname }} >> /etc/hosts
+    
+    ##
+    # Set timezone
+    #
+    - include: tasks/time.yml
+
+    ##
+    # Add user www and group www
+    #
+    - name: Add user www and group www
+      group: name=www state=present
+    - user: name=www comment="Webserver user" group=www
+      
+    ##
+    # Update package list
+    #
+    - name: update apt cache
+      apt: update_cache=yes upgrade=yes
+
+    ##
+    # Start installing
+    #
+    - name: Install various
+      action: apt pkg={{ item }} state=latest
+      tags: common
+      with_items:
+        - zip
+        - unzip
+        - curl
+        - telnet
+        - mailutils
+        - samba
+        - smbclient
+        - subversion
+        - git-core
+        - git-svn
+        - gcc
+        - g++
+        - autoconf
+        - automake
+        - build-essential
+        - libtool
+        - ncurses-dev
+        - libjpeg-dev
+        - make
+        - libmyodbc 
+        - traceroute
+        - ftp
+        - ncftp
+        - vsftpd
+        - goaccess
+        - mytop
+        
+    ##
+    # LAMP Stack
+    #
+    - include: tasks/apache.yml
+    - include: tasks/mysql.yml
+    - include: tasks/php.yml
+
+    ##
+    # Solr-Undertow
+    #
+
+
+    ##
+    # add-apt-repository ppa:webupd8team/java
+    # apt-get update
+    # apt-get install oracle-java8-installer
+    #
+    # java -version
+    #
+    # apt-get install oracle-java8-set-default
+
+
+    - name: Solr-Undertow
+      get_url: url=https://github.com/bremeld/solr-undertow/releases/download/v1.1.0/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root
+
+    - name: Unarchive Solr-Undertow
+      unarchive: src=/root/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root
+      
+    ##
+    # Restart services
+    #
+    - name: Restart Apache
+      action: service name=apache2 state=restarted
+      tags: common
+
+    - name: Restart MySQL
+      action: service name=mysql state=restarted
+      tags: common
+
+    - name: Restart vsftpd
+      action: service name=vsftpd state=restarted
+      tags: ftp

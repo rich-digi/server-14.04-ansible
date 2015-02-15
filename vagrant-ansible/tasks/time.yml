@@ -1,0 +1,5 @@
+---
+- name: set setver time
+  command: export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+  command: echo 'Europe/London' > /etc/timezone'
+  command: dpkg-reconfigure -f noninteractive tzdata
