@@ -16,6 +16,8 @@
       hostname: name={{ machine_hostname }}
 
     # NOT IDEMPOTENT !!!
+    # NOT IDEMPOTENT !!!
+    # NOT IDEMPOTENT !!!
     - shell: echo >> /etc/hosts
     - shell: echo \# Extra entries >> /etc/hosts
     - shell: echo 127.0.0.1 {{ machine_hostname }} >> /etc/hosts
