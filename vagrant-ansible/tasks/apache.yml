@@ -16,7 +16,3 @@
 - name: enable apache mod_rewrite and mod_headers
   apache2_module: state=present  name=rewrite  
   apache2_module: state=present  name=headers   
-
-# Run the command if the specified file does not exist.
-- name: restart apache
-  command: service apache2 restart
