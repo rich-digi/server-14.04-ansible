@@ -1,0 +1,65 @@
+---
+# tasks file for common
+ 
+##
+# Set hostname
+#
+- name: Set hostname
+  hostname: name={{ machine_hostname }}
+- lineinfile: dest=/etc/hosts line='127.0.0.1 {{ machine_hostname }}'
+
+##
+# Set timezone
+#
+- name: Set sever time
+  command: export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+  command: echo '{{ timezone }}' > /etc/timezone'
+  command: dpkg-reconfigure -f noninteractive tzdata
+
+##
+# Add user www and group www
+#
+- name: Add user www and group www
+  group: name=www state=present
+- user: name=www comment="Webserver user" group=www
+  
+##
+# Update package list
+#
+- name: Update apt cache
+  apt: update_cache=yes upgrade=yes
+
+##
+# Start installing
+#
+- name: Install various common packages
+  action: apt pkg={{ item }} state=latest
+  tags: common
+  with_items:
+    - zip
+    - unzip
+    - curl
+    - telnet
+    - mailutils
+    - samba
+    - smbclient
+    - subversion
+    - git-core
+    - git-svn
+    - gcc
+    - g++
+    - autoconf
+    - automake
+    - build-essential
+    - libtool
+    - ncurses-dev
+    - libjpeg-dev
+    - make
+    - libmyodbc 
+    - debconf-utils
+    - traceroute
+    - ftp
+    - ncftp
+    - goaccess
+    - htop
+        

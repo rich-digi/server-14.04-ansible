@@ -9,29 +9,27 @@
 machine_hostname: 'scratchpad'
 machine_fqdn: 'scratchpad.apewave.com'
 
+timezone: Eurpoe/London
+
 # apache
 apache_server_admin: 'webmaster@scratchpad.apewave.com'
 apache_server_alias: '*.*.scratchpad.apewave.com'
 
-# my.cnf
+# mysql configuration
 mysql_max_allowed_packet: '128M'
 mysql_character_set_server: 'utf8'
 mysql_collation_server: 'utf8_general_ci'
 innodb_file_per_table: 'innodb_file_per_table'
 
-# mysql
+# mysql users
 mysql_root_password:    'smokinghotsql'
 mysql_remote_user:      'remote'
 mysql_remote_password:  'Romer8'
 
 # php.ini
-php_max_execution_time: '90'
-php_display_errors: 'On'
-php_display_startup_errors: 'On'
-php_html_errors: 'On'
-php_post_max_size: '32M'
-php_upload_max_filesize: '32M'
-php_date_timezone: 'US/Central'
+php_memory_limit: '128M'
+php_max_execution_time: '30'
+php_date_timezone: 'Europe/London'
 
 # vsftpd
 #vsftpd_anonymous_enable: 'NO'

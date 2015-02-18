@@ -1,0 +1,11 @@
+---
+
+- name: Gather PKI facts
+  action: setup
+
+- name: Update ca-certificates.crt
+  command: update-ca-certificates
+
+- name: Regenerate ca-certificates.crt
+  command: update-ca-certificates --fresh
+

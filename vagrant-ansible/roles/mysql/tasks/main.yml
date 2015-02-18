@@ -1,0 +1,56 @@
+---
+# tasks file for mysql
+
+##
+# MySQL database setup, this does the equivalent of mysql_secure_installation.
+#
+- name: Install MySQL
+  apt: name={{ item }} state=present
+  with_items:
+    - mysql-server
+    - mysql-client
+    - mytop
+    - python-mysqldb
+  
+- name: Configuration file, my.cnf
+  action: template src=my.cnf.j2 dest=/etc/mysql/my.cnf
+  notify: restart mysql
+
+##
+# Users
+#
+- name: Set the root password
+  action: mysql_user user=root password={{ mysql_root_password }} host=localhost
+
+- name: Config for easy access as root user
+  action: template src=root-my.cnf.j2 dest=/root/.my.cnf
+
+##
+# Secure MySQL
+#
+- name: Delete anonymous MySQL server user for {{ machine_hostname }}
+  action: mysql_user user="" host="{{ machine_hostname}}" state="absent"
+
+- name: Delete anonymous MySQL server user for localhost
+  action: mysql_user user="" state="absent"
+
+- name: Secure the MySQL root user for IPV6 localhost (::1)
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="::1"
+
+- name: Secure the MySQL root user for IPV4 localhost (127.0.0.1)
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="127.0.0.1"
+
+- name: Secure the MySQL root user for localhost domain (localhost)
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="localhost"
+
+- name: Secure the MySQL root user for {{  machine_hostname }} domain
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="{{  machine_hostname }}"
+
+- name: Remove the MySQL test database
+  action: mysql_db db=test state=absent
+
+##
+# Add remote user
+#
+- name: Add remote access user
+  action: mysql_user user={{ mysql_remote_user }} password={{ mysql_remote_password }} priv=*.*:ALL state=present

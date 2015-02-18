@@ -1,117 +1,25 @@
 ---
 - hosts: all
   sudo: true
-  # roles: 
-  # - { role: bennojoy.mongo_mongod } 
-  
   vars_files:
     - config.yml
+  
+  roles: 
 
+  # Utilities, system administration and diagnostics
+  - common 
+  - webmin
+
+  # LAMP stack, with all our bells-and-whistles
+  - apache 
+  - mysql 
+  - php 
+
+  # Mongo
+  #- mongo 
+  
   tasks:
     
-    ##
-    # Set hostname
-    #
-    - name: Set hostname
-      hostname: name={{ machine_hostname }}
-    - lineinfile: dest=/etc/hosts line='127.0.0.1 {{ machine_hostname }}'
-    
-    ##
-    # Set timezone
-    #
-    - include: tasks/time.yml
-
-    ##
-    # Add user www and group www
-    #
-    - name: Add user www and group www
-      group: name=www state=present
-    - user: name=www comment="Webserver user" group=www
-      
-    ##
-    # Update package list
-    #
-    - name: update apt cache
-      apt: update_cache=yes upgrade=yes
-
-    ##
-    # Start installing
-    #
-    - name: Install various
-      action: apt pkg={{ item }} state=latest
-      tags: common
-      with_items:
-        - zip
-        - unzip
-        - curl
-        - telnet
-        - mailutils
-        - samba
-        - smbclient
-        - subversion
-        - git-core
-        - git-svn
-        - gcc
-        - g++
-        - autoconf
-        - automake
-        - build-essential
-        - libtool
-        - ncurses-dev
-        - libjpeg-dev
-        - make
-        - libmyodbc 
-        - debconf-utils
-        - traceroute
-        - ftp
-        - ncftp
-        - goaccess
-        - htop
-        - mytop
-        
-    ##
-    # LAMP Stack, with all the bells-and-whistles we like
-    #
-    - include: tasks/apache.yml
-    - include: tasks/mysql.yml
-    - include: tasks/php.yml
-
-    ##
-    # Drush for Drupal
-    #
-    - include: tasks/drush.yml
-
-    ##
-    # Webmin
-    #
-    - name: Install Webmin | Add Webmin repository
-      lineinfile: dest=/etc/apt/sources.list line='deb http://download.webmin.com/download/repository sarge contrib'
-    
-    - name: Install Webmin | Add new repo key
-      apt_key: url=http://www.webmin.com/jcameron-key.asc state=present
-
-    - name: Install Webmin | Update apt cache
-      apt: update_cache=yes
-
-    - name: Install Webmin | Install Webmin
-      apt: name=webmin state=prese
- 
-    ##
-    # Java 8
-    #
-    - name: Install Java 8
-      apt_repository: repo='ppa:webupd8team/java'
-    - name: auto accept oracle jdk license
-      debconf: name='oracle-java7-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
-    - apt: name=oracle-java8-installer state=present
-      apt: name=oracle-java8-set-default state=present
-
-    - name: Solr-Undertow
-      get_url: url=https://github.com/bremeld/solr-undertow/releases/download/v1.1.0/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root
-
-    - name: Unarchive Solr-Undertow
-      unarchive: src=/root/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root copy=no
-      
     ##
     # Restart services
     #
