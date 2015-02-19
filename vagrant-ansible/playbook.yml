@@ -15,22 +15,25 @@
   - mysql 
   - php 
 
-  # Mongo
-  #- mongo 
+  # VSFTP
   
-  tasks:
-    
-    ##
-    # Restart services
-    #
-    - name: Restart Apache
-      action: service name=apache2 state=restarted
-      tags: common
+  # Postfix, configured as - WARNING TRASHES FIREWALL!
+  # - { role: debops.postfix, postfix: ['network', 'mx', 'submission'], ansible_fqdn: '{{ machine_fqdn }}', ansible_hostname: '{{ machine_hostname }}' }
+  
+  # Ruby Version Manager and Ruby (see config.yml for the Ruby versions that get installed)
+  - rvm_io.rvm1-ruby
+  
+  # Sass, Compass, and various other CSS-preprocessor tools
+  - sass-tools
+  
+  # Node
+  - nodejs
 
-    - name: Restart MySQL
-      action: service name=mysql state=restarted
-      tags: common
+  # Mongo
+  - mongo
+  - php5-mongo 
+  
+  # Redis
+  
+  # Varnish
 
-    - name: Restart vsftpd
-      action: service name=vsftpd state=restarted
-      tags: ftp

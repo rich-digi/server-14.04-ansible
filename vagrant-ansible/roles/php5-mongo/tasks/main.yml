@@ -1,0 +1,23 @@
+---
+# tasks file for php5-mongo
+
+- name: Ensure php5-dev is installed, so we can compile PECL extensions
+  apt: name=php5-dev state=present
+  
+- name: Check PECL hasn't already installed mongo
+  shell: pecl list
+  register: pecl_packages
+          
+- name: Install PHP5 Mongo support - pipe return to interactive promt using yes
+  shell: yes '' | pecl install mongo
+  when: pecl_packages.stdout.find('mongo') == -1
+    
+- name: Add extension configuration
+  copy: src=mongo.ini dest=/etc/php5/mods-available/mongo.ini mode=0644
+
+- name: Symlink into CLI PHP
+  file: src=/etc/php5/mods-available/mongo.ini dest=/etc/php5/cli/conf.d/30-mongo.ini state=link
+  
+- name: Symlink into MOD PHP
+  file: src=/etc/php5/mods-available/mongo.ini dest=/etc/php5/apache2/conf.d/30-mongo.ini state=link
+  notify: restart apache

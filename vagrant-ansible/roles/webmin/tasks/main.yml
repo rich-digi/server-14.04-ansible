@@ -14,5 +14,5 @@
   apt: update_cache=yes
 
 - name: Install Webmin | Install Webmin
-  apt: name=webmin state=prese
+  apt: name=webmin state=present
  

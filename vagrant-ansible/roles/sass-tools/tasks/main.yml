@@ -1,0 +1,12 @@
+---
+# tasks file for sass-tools
+
+- name:  Install SASS, Compass, and some other CSS-preprocessor tools
+  gem: name={{ item }} state=latest user_install=no
+  with_items:
+    - sass
+    - compass
+    - bourbon
+    - susy
+    - breakpoint
+    - sassy-buttons

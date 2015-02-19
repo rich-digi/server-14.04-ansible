@@ -11,7 +11,7 @@
 ##
 # Set timezone
 #
-- name: Set sever time
+- name: Set server timezone
   command: export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
   command: echo '{{ timezone }}' > /etc/timezone'
   command: dpkg-reconfigure -f noninteractive tzdata
@@ -36,6 +36,7 @@
   action: apt pkg={{ item }} state=latest
   tags: common
   with_items:
+    - expect
     - zip
     - unzip
     - curl

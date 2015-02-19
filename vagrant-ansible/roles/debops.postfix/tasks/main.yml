@@ -1,4 +1,4 @@
----
+vagrant ssh---
 
 - name: Make sure Ansible local facts directory exists
   file:

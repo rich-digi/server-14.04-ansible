@@ -27,9 +27,9 @@ mysql_remote_user:      'remote'
 mysql_remote_password:  'Romer8'
 
 # php.ini
-php_memory_limit: '128M'
+php_memory_limit:       '128M'
 php_max_execution_time: '30'
-php_date_timezone: 'Europe/London'
+php_date_timezone:      'Europe/London'
 
 # vsftpd
 #vsftpd_anonymous_enable: 'NO'
@@ -43,3 +43,9 @@ vsftpd_users:
    - username: ftpuser
      name: FTP User
      password: 'test'
+
+# Ruby versions
+rvm1_rubies:
+    - 'ruby-2.2.0'
+    
+rvm1_default_ruby_version: ruby-2.2.0
