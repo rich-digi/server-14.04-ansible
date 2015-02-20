@@ -1,0 +1,25 @@
+---
+##
+# ex_install, setuptools, pip and virtualenv
+#
+- name: Ensure dev packages are present, inc. python-dev 
+  apt: name={{ item }} state=present
+  with_items:
+    - libpq-dev
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+  
+- name: Copy ez_setup.py to server
+  copy: src=ez_setup.py dest=/usr/local/src/ez_setup.py
+
+- name: Run ez_setup.py
+  command: 'python /usr/local/src/ez_setup.py'
+  
+- name: Ensure pip is present
+  apt: name=python-pip state=latest
+
+- name: Ensure virtualenv is present
+  pip: name=virtualenv state=latest
+  
+# Add LXML

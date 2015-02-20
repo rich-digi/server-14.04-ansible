@@ -7,33 +7,40 @@
   roles: 
 
   # Utilities, system administration and diagnostics
-  - common 
-  - webmin
+  #- common 
+  #- webmin
 
   # LAMP stack, with all our bells-and-whistles
-  - apache 
-  - mysql 
-  - php 
+  #- apache 
+  #- mysql 
+  #- php 
 
   # VSFTP
   
   # Postfix, configured as - WARNING TRASHES FIREWALL!
   # - { role: debops.postfix, postfix: ['network', 'mx', 'submission'], ansible_fqdn: '{{ machine_fqdn }}', ansible_hostname: '{{ machine_hostname }}' }
   
+  # Python ecosystem tools: Pip, VirtualEnv, LXML
+  - python-extras
+  
   # Ruby Version Manager and Ruby (see config.yml for the Ruby versions that get installed)
-  - rvm_io.rvm1-ruby
+  #- rvm_io.rvm1-ruby
   
   # Sass, Compass, and various other CSS-preprocessor tools
-  - sass-tools
+  #- sass-tools
   
   # Node
-  - nodejs
+  #- nodejs
 
+  # Bower, Grunt and Yeoman
+  
   # Mongo
-  - mongo
-  - php5-mongo 
+  #- mongo
+  #- php5-mongo 
   
   # Redis
   
   # Varnish
+  
+  # Add: NRPE, DNSMAsq, UFW, Squid, Vagrant, Docker
 
