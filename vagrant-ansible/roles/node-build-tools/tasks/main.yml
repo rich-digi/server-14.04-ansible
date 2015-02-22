@@ -1,0 +1,11 @@
+---
+##
+# Node Build tools for modern WebApps
+#
+- name: Ensure Yeomam, Bower, Grunt and Gulp are present
+  npm: name={{ item }} state=latest global=yes
+  with_items:
+    - yo
+    - bower
+    - grunt-cli
+    - gulp

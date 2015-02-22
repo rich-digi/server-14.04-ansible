@@ -1,6 +1,6 @@
 ---
 ##
-# ex_install, setuptools, pip and virtualenv
+# ex_install, setuptools, pip and virtualenv and virtualenvwrapper
 #
 - name: Ensure dev packages are present, inc. python-dev 
   apt: name={{ item }} state=present
@@ -22,4 +22,17 @@
 - name: Ensure virtualenv is present
   pip: name=virtualenv state=latest
   
+- name: Ensure virtualenvwrapper is present
+  pip: name=virtualenvwrapper state=latest
+
 # Add LXML
+# These need to be installed first to avoid compilation errors:
+- name: LXML | Ensure libxml2-dev libxslt-dev lib32z1-dev are present
+  apt: name={{ item }} state=present
+  with_items:
+    - libxml2-dev
+    - libxslt-dev
+    - lib32z1-dev
+
+- name: LXML | Ensure LXML is present
+  pip: name=lxml state=latest

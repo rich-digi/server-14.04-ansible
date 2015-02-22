@@ -1,22 +1,9 @@
-  tasks:
-    
-    ##
-    # Drush for Drupal
-    #
-    - include: tasks/drush.yml
+##
+# Firewall
+#
+# Enable UFW and deny by default
+- ufw: state=enabled policy=deny
 
-    ##
-    # Java 8, Undertow and Solr
-    #
-    - name: Install Java 8
-      apt_repository: repo='ppa:webupd8team/java'
-    - name: auto accept oracle jdk license
-      debconf: name='oracle-java7-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
-    - apt: name=oracle-java8-installer state=present
-      apt: name=oracle-java8-set-default state=present
-
-    - name: Solr-Undertow
-      get_url: url=https://github.com/bremeld/solr-undertow/releases/download/v1.1.0/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root
-
-    - name: Unarchive Solr-Undertow
-      unarchive: src=/root/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root copy=no
+# Allow all to access following ports
+- ufw: rule=allow port={{ item }} proto=tcp
+  with_items: firewall

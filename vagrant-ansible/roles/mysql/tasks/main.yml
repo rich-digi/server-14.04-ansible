@@ -53,4 +53,4 @@
 # Add remote user
 #
 - name: Add remote access user
-  action: mysql_user user={{ mysql_remote_user }} password={{ mysql_remote_password }} priv=*.*:ALL state=present
+  action: mysql_user user={{ mysql_remote_user }} password={{ mysql_remote_password }} priv=*.*:ALL state=present host="%"
