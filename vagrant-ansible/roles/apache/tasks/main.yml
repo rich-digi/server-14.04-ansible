@@ -1,6 +1,10 @@
 ---
 # tasks file for apache
 
+- name: Install supporting libs
+  apt: name=libexpat1  state=present # This isn't an Apache module - MOVE
+  apt: name=ssl-cert   state=present # This isn't an Apache module - MOVE
+
 - name: Install Apache
   apt: name=apache2 state=present
 
@@ -9,12 +13,10 @@
   apache2_module: state=absent name=mpm_event
 
 - name: Install Apache modules
-  apt: name=libapache2-mpm-itk  state=present
-  apt: name=apache2-utils       state=present
-  apt: name=libexpat1           state=present # This isn't an Apache module - MOVE
-  apt: name=ssl-cert            state=present # This isn't an Apache module - MOVE
-  apt: name=apache2-mpm-itk     state=present
   apt: name=libapache2-mod-wsgi state=present
+  apt: name=libapache2-mpm-itk  state=present
+  apt: name=apache2-mpm-itk     state=present # Needed?
+  apt: name=apache2-utils       state=present
   
 - name: Enable mod_rewrite and mod_headers
   apache2_module: state=present  name=rewrite  
