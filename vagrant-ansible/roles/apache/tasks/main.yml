@@ -2,8 +2,10 @@
 # tasks file for apache
 
 - name: Install supporting libs
-  apt: name=libexpat1  state=present # This isn't an Apache module - MOVE
-  apt: name=ssl-cert   state=present # This isn't an Apache module - MOVE
+  apt: name={{ item }} state=present
+  with_items:
+    - libexpat1
+    - ssl-cert 
 
 - name: Install Apache
   apt: name=apache2 state=present
@@ -13,14 +15,18 @@
   apache2_module: state=absent name=mpm_event
 
 - name: Install Apache modules
-  apt: name=libapache2-mod-wsgi state=present
-  apt: name=libapache2-mpm-itk  state=present
-  apt: name=apache2-mpm-itk     state=present # Needed?
-  apt: name=apache2-utils       state=present
+  apt: name={{ item }} state=present
+  with_items:
+    - libapache2-mod-wsgi
+    - libapache2-mpm-itk
+    - apache2-utils
+    #-apache2-mpm-itk
   
 - name: Enable mod_rewrite and mod_headers
-  apache2_module: state=present  name=rewrite  
-  apache2_module: state=present  name=headers   
+  apache2_module: name={{ item }} state=present 
+  with_items:
+    - headers
+    - rewrite
 
 - name: Set up default configuration for affiliate mode
   template: src=apache2.conf.j2 dest=/etc/apache2/apache2.conf
@@ -29,11 +35,11 @@
 - name: Create directories for default site
   file: path=/home/sites/_default/{{ item }} state=directory owner=www group=www mode=0775
   with_items:
-     - bin
-     - cgi-bin
-     - logs
-     - temp
-     - www
+    - bin
+    - cgi-bin
+    - logs
+    - temp
+    - www
 
 - name: Install default site
   template: src=index.html.j2 dest=/home/sites/_default/www/index.html owner=www group=www mode=0775

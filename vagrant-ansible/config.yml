@@ -22,14 +22,8 @@ security_ufw_ports:
   - { rule: allow, port: 2200, proto: tcp }   # Vagrant Port Forwarding
   - { rule: allow, port: 3306, proto: tcp }   # MySQL
 
-firewall:
-    - 21    # FTP
-    - 22    # SSH
-    - 80    # HTTP
-    - 139   # Samba
-    - 445   # Samba
-    - 2200  # Vagrant Port Forwarding
-    - 3306  # MySQL
+# Nagios: IP(s) of central monitoring server(s) (comma-delimited if more than one)
+nagios_server_ip: '176.58.119.15'
 
 # Apache
 apache_server_admin: 'webmaster@scratchpad.apewave.com'
@@ -68,4 +62,4 @@ vsftpd_users:
 rvm1_rubies:
     - 'ruby-2.2.0'
     
-rvm1_default_ruby_version: ruby-2.2.0
+rvm1_default_ruby_version: 'ruby-2.2.0'

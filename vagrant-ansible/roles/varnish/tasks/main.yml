@@ -1,0 +1,18 @@
+---
+# tasks file for varnish
+
+- name: Fetch repository key
+  apt_key: url=http://repo.varnish-cache.org/ubuntu/GPG-key.txt state=present
+
+- name: Add Varnish repository
+  apt_repository: repo="http://repo.varnish-cache.org/ubuntu/ trusty varnish-4.0"
+  
+- name: Install Varnish
+  apt: pkg=varnish state=latest update_cache=yes
+  
+- name: Varnish | Push default configuration template
+  template: src=varnish.j2 dest=/etc/default/varnish owner=root group=root mode=0644
+  notify: varnish-restart
+
+- name: Ensure Varnish is running
+  service: name=varnish state=started

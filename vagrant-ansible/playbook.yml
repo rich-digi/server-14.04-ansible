@@ -14,7 +14,7 @@
   # Utilities, system administration and diagnostics
   - common 
   - webmin
-  #- nagios-client
+  - nagios-client
 
   # -------------------------------------------
   # LAMP stack, with all our bells-and-whistles
@@ -63,9 +63,13 @@
   # Apache Solr running on Undertow
   - solr-undertow
 
+  # -----
   # Redis
+  - DavidWittman.redis  
   
-  # Varnish
+  # --------------------------------
+  # Varnish - cacheing reverse proxy
+  - varnish
   
-  # Add: NRPE, DNSMAsq, Squid, Vagrant, Docker
+  # Add: DNSMAsq, Squid, Vagrant, Docker
 
