@@ -26,8 +26,10 @@
 ##
 # Update package list
 #
+- name: Ensure Hetzner's crawlingly slow mirrors are NOT consulted
+  lineinfile: dest=/etc/apt/sources.list state=absent regexp="mirror.hetzner.de"
 - name: Update apt cache
-  apt: update_cache=yes upgrade=yes
+  apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }} upgrade=yes
 
 ##
 # Start installing

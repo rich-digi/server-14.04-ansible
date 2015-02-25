@@ -25,6 +25,9 @@ security_ufw_ports:
 # Nagios: IP(s) of central monitoring server(s) (comma-delimited if more than one)
 nagios_server_ip: '176.58.119.15'
 
+# Apt cache
+apt_cache_valid_time: 86400
+
 # Apache
 apache_server_admin: 'webmaster@scratchpad.apewave.com'
 apache_server_alias: '*.*.scratchpad.apewave.com'
