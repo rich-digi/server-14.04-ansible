@@ -27,7 +27,7 @@
 # Set apt-cache location
 #
 - name: Set apt-cache location (server where we have apt-cache-ng installed)
-  template: src=etc-apt-apt.conf.d-02proxy.j2 dest=/etc/apt/apt.conf.d/02Proxy owner=root group=root mode=0775
+  template: src=etc-apt-apt.conf.d-02proxy.j2 dest=/etc/apt/apt.conf.d/02Proxy owner=root group=root mode=0644
 
 ##
 # Update package list

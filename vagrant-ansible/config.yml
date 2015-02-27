@@ -14,19 +14,20 @@ timezone: Europe/London
 # Firewall
 security_ufw_state: enabled
 security_ufw_ports:
-  - { rule: allow, port: 21,   proto: tcp }   # FTP
-  - { rule: allow, port: 22,   proto: tcp }   # SSH
-  - { rule: allow, port: 80,   proto: tcp }   # HTTP
-  - { rule: allow, port: 139,  proto: tcp }   # Samba
-  - { rule: allow, port: 445,  proto: tcp }   # Samba
-  - { rule: allow, port: 2200, proto: tcp }   # Vagrant Port Forwarding
-  - { rule: allow, port: 3306, proto: tcp }   # MySQL
+  - { rule: allow, port: 21,    proto: tcp }   # FTP
+  - { rule: allow, port: 22,    proto: tcp }   # SSH
+  - { rule: allow, port: 80,    proto: tcp }   # HTTP
+  - { rule: allow, port: 139,   proto: tcp }   # Samba
+  - { rule: allow, port: 445,   proto: tcp }   # Samba
+  - { rule: allow, port: 2200,  proto: tcp }   # Vagrant Port Forwarding
+  - { rule: allow, port: 3306,  proto: tcp }   # MySQL
+  - { rule: allow, port: 11371, proto: tcp }   # HKP - necessary for connecting to GnuPG keyservers when installing signed packages
 
 # Nagios: IP(s) of central monitoring server(s) (comma-delimited if more than one)
 nagios_server_ip: '176.58.119.15'
 
 # Apt cache
-apt_cache_location: 'linode-hub.apewave.com'
+apt_cache_location: 'http://linode-hub.apewave.com' # Must include protocol e.g. http://
 apt_cache_valid_time: 86400
 
 # Apache
@@ -49,20 +50,23 @@ php_memory_limit:       '128M'
 php_max_execution_time: '30'
 php_date_timezone:      'Europe/London'
 
-# vsftpd
-#vsftpd_anonymous_enable: 'NO'
-#vsftpd_local_enable: 'YES'
-#vsftpd_write_enable: 'YES'
-#vsftpd_local_umask: '002'
-
+# vsftp
 vsftpd_service_enabled: yes
 vsftpd_service_state: started
+vsftpd_config: {
+    local_enable: 'YES',
+    write_enable: 'YES',
+    chroot_list_enable: 'YES',
+    seccomp_sandbox: 'NO',
+    allow_writable_chroot: 'YES'  
+}
 vsftpd_users:
    - username: ftpuser
      name: FTP User
      password: 'test'
 
 # Ruby versions
+rvm1_gpg_key_server: 'hkp://pgp.mit.edu' # keys.gnupg.net has been down a lot lately
 rvm1_rubies:
     - 'ruby-2.2.0'
     

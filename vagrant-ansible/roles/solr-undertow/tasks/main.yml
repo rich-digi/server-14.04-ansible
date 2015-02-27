@@ -2,6 +2,11 @@
 ##
 # Java 8, Undertow and Solr
 #
+# NOTE: Java cannot be downloaded through an apt cache (e.g. if you are running apt-cacher-ng)
+
+- name: Configure apt to avoid apt cache (if we're using it) for Java
+  lineinfile: dest="/etc/apt/apt.conf.d/01Proxy" line="Acquire::http::Proxy { download.oracle.com DIRECT; };" create=yes
+
 - name: Ensure Java 8 is present
   apt_repository: repo='ppa:webupd8team/java'
 - name: Auto accept oracle jdk license
