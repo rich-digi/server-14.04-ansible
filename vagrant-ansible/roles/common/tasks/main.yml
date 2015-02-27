@@ -24,12 +24,19 @@
 - user: name=www comment="Webserver user" group=www
   
 ##
+# Set apt-cache location
+#
+- name: Set apt-cache location (server where we have apt-cache-ng installed)
+  template: src=etc-apt-apt.conf.d-02proxy.j2 dest=/etc/apt/apt.conf.d/02Proxy owner=root group=root mode=0775
+
+##
 # Update package list
 #
 - name: Ensure Hetzner's crawlingly slow mirrors are NOT consulted
   lineinfile: dest=/etc/apt/sources.list state=absent regexp="mirror.hetzner.de"
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }} upgrade=yes
+  apt: update_cache=yes upgrade=yes
+  # apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }} upgrade=yes
 
 ##
 # Start installing

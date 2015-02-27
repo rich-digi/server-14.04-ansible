@@ -26,6 +26,7 @@ security_ufw_ports:
 nagios_server_ip: '176.58.119.15'
 
 # Apt cache
+apt_cache_location: 'linode-hub.apewave.com'
 apt_cache_valid_time: 86400
 
 # Apache
