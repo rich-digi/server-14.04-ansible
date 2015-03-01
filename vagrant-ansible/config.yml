@@ -21,6 +21,7 @@ security_ufw_ports:
   - { rule: allow, port: 445,   proto: tcp }   # Samba
   - { rule: allow, port: 2200,  proto: tcp }   # Vagrant Port Forwarding
   - { rule: allow, port: 3306,  proto: tcp }   # MySQL
+  - { rule: allow, port: 8080,  proto: tcp }   # Varnish test port
   - { rule: allow, port: 11371, proto: tcp }   # HKP - necessary for connecting to GnuPG keyservers when installing signed packages
 
 # Nagios: IP(s) of central monitoring server(s) (comma-delimited if more than one)
@@ -71,3 +72,8 @@ rvm1_rubies:
     - 'ruby-2.2.0'
     
 rvm1_default_ruby_version: 'ruby-2.2.0'
+
+# Varnish
+varnish_default_backend_port: "80"
+varnish_listen_port: "8080"
+
