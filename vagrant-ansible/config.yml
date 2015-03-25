@@ -19,8 +19,9 @@ security_ufw_ports:
   - { rule: allow, port: 80,    proto: tcp }   # HTTP
   - { rule: allow, port: 139,   proto: tcp }   # Samba
   - { rule: allow, port: 445,   proto: tcp }   # Samba
-  - { rule: allow, port: 2200,  proto: tcp }   # Vagrant Port Forwarding
+  - { rule: allow, port: 2200,  proto: tcp }   # Vagrant port forwarding
   - { rule: allow, port: 3306,  proto: tcp }   # MySQL
+  - { rule: allow, port: 6082,  proto: tcp }   # Varnish admin
   - { rule: allow, port: 8080,  proto: tcp }   # Varnish test port
   - { rule: allow, port: 11371, proto: tcp }   # HKP - necessary for connecting to GnuPG keyservers when installing signed packages
 

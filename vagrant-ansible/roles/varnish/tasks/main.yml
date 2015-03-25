@@ -10,9 +10,12 @@
 - name: Install Varnish
   apt: pkg=varnish state=latest update_cache=yes
   
-- name: Varnish | Push default configuration template
+- name: Push default configuration template
   template: src=varnish.j2 dest=/etc/default/varnish owner=root group=root mode=0644
   notify: restart varnish
+
+- name: Add default VCL
+  template: src=default.vcl.j2 dest=/etc/varnish/default.vcl owner=root group=root mode=0644
 
 - name: Ensure Varnish is running
   service: name=varnish state=started

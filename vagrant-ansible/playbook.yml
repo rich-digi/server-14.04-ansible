@@ -8,7 +8,7 @@
 
   # ---------------------------------------------------------------------
   # First set up the Firewall (see config.yml for list of rules to apply)
-  - nickjj.security
+  # nickjj.security
 
   # ------------------------------------------------
   # Utilities, system administration and diagnostics
