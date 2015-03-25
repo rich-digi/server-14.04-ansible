@@ -67,6 +67,17 @@ vsftpd_users:
      name: FTP User
      password: 'test'
 
+# Samba
+workgroup: WORKGROUP
+public_share_name: public
+public_share_path: /samba/public
+private_share_name: private
+private_share_path: /samba/private
+samba_group_name: smbgrp
+smaba_users:
+    - { name: 'arbab', smbpasswd: 'pass123' }
+    - { name: 'hussain', smbpasswd: 'password' }
+  
 # Ruby versions
 rvm1_gpg_key_server: 'hkp://pgp.mit.edu' # keys.gnupg.net has been down a lot lately
 rvm1_rubies:
