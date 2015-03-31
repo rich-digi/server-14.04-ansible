@@ -85,6 +85,9 @@ rvm1_rubies:
     
 rvm1_default_ruby_version: 'ruby-2.2.0'
 
+# Redis
+redis_bind: 127.0.0.1
+
 # Varnish
 varnish_default_backend_port: "80"
 varnish_listen_port: "8080"
