@@ -8,69 +8,68 @@
 
   # ---------------------------------------------------------------------
   # First set up the Firewall (see config.yml for list of rules to apply)
-  # nickjj.security
+  #- secure-server
 
   # ------------------------------------------------
   # Utilities, system administration and diagnostics
-  - common 
-  - webmin
-  - nagios-client
+  #- common 
+  #- webmin
+  #- nagios-client
 
   # -------------------------------------------
   # LAMP stack, with all our bells-and-whistles
-  - apache 
-  - mysql 
-  - php 
+  #- apache 
+  #- mysql 
+  #- php 
 
   # ----------------
   # WebApp CLI tools
-  - drush
-  - wp-cli
+  #- drush
+  #- wp-cli
   
   # VSFTP
-  - franklinkim.vsftpd
+  #- franklinkim.vsftpd
   
   # -----------------------------------
   # Postfix, configured as null client
   # A null client is a machine that can only send mail. It receives no mail from the network, and it does not deliver any mail locally. 
-  - postfix
+  #- postfix
   
   # ----------------------------------------------------------------
   # Python ecosystem tools: Pip, VirtualEnv, VirtualEnvWrapper, LXML
-  - python-extras
+  #- python-extras
   
   # ---------------------------------------------------------------------------------------
   # Ruby Version Manager and Ruby (see config.yml for the Ruby versions that get installed)
-  - rvm_io.rvm1-ruby
+  #- rvm_io.rvm1-ruby
   
   # -------------------------------------------------------
   # Sass, Compass, and various other CSS-preprocessor tools
-  - sass-tools
+  #- sass-tools
   
   # ----
   # Node
-  - nodejs
+  #- nodejs
 
   # -----------------------------
   # Yeoman, Bower, Grunt and Gulp
-  - node-build-tools
+  #- node-build-tools
   
   # -----
   # Mongo
-  - mongo
-  - php5-mongo 
+  #- php5-mongo 
   
   # -------------------------------
   # Apache Solr running on Undertow
-  - solr-undertow
+  #- solr-undertow
 
   # -----
   # Redis
-  # - DavidWittman.redis  
+  #- DavidWittman.redis  
   
   # --------------------------------
   # Varnish - cacheing reverse proxy
-  - varnish
+  #- varnish
   
   # Add: DNSMAsq, Samba, Squid?, Vagrant, Docker
 
