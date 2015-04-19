@@ -10,6 +10,19 @@
     - php5-dev
     - php5-gd
     - php5-mcrypt
+    - php5-mysql
 
+- name: install composer
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer
+  tags: composer
+
+- name: rename composer.phar to composer
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
+  tags: composer
+
+- name: make composer executable
+  file: path=/usr/local/bin/composer mode=a+x state=file
+  tags: composer
+    
 - name: Customise apache2/php.ini
   template: src=apache2-php.ini.j2 dest=/etc/php5/apache2/php.ini mode=0644
