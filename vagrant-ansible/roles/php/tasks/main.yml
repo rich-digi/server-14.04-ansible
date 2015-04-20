@@ -12,6 +12,20 @@
     - php5-mcrypt
     - php5-mysql
 
+- name: ensure PHP PEAR is installed
+  action: apt pkg=php-pear state=installed
+  tags: drush
+
+- name: Update PEAR
+  action: command pear upgrade-all
+  tags: drush
+
+- name: Update PECL
+  command: pecl channel-update pecl.php.net
+
+- name: Install YAML support - pipe return to interactive promt using yes
+  shell: yes '' | pecl install yaml
+
 - name: install composer
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer
   tags: composer
