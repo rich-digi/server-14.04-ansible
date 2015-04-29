@@ -54,3 +54,11 @@
 #
 - name: Add remote access user
   action: mysql_user user={{ mysql_remote_user }} password={{ mysql_remote_password }} priv=*.*:ALL state=present host="%"
+
+##
+# Add MySQL performance tuner script
+#
+- name: Emsure MySQL performance tuner script is available
+  copy: src=mysqltuner.pl dest=/root/mysqltuner.pl mode="o+x"
+
+

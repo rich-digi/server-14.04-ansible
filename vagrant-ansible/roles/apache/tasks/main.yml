@@ -32,6 +32,10 @@
   template: src=apache2.conf.j2 dest=/etc/apache2/apache2.conf
   notify: restart apache
 
+- name: Perfomace tune Apache MPM Prefork settings (based on server RAM)
+  template: src=mpm_prefork.conf.j2 dest=/etc/apache2/mods-available/mpm_prefork.conf
+  notify: restart apache
+
 - name: Create directories for default site
   file: path=/home/sites/_default/{{ item }} state=directory owner=www group=www mode=0775
   with_items:
