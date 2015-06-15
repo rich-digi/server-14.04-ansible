@@ -20,6 +20,7 @@ security_ufw_ports:
   - { rule: allow, port: 21,    proto: tcp }   # FTP
   - { rule: allow, port: 22,    proto: tcp }   # SSH
   - { rule: allow, port: 80,    proto: tcp }   # HTTP
+  - { rule: allow, port: 443,   proto: tcp }   # HTTPS
   - { rule: allow, port: 139,   proto: tcp }   # Samba
   - { rule: allow, port: 445,   proto: tcp }   # Samba
   - { rule: allow, port: 2200,  proto: tcp }   # Vagrant port forwarding

@@ -44,8 +44,13 @@
 #
 - name: Ensure Hetzner's crawlingly slow mirrors are NOT consulted
   lineinfile: dest=/etc/apt/sources.list state=absent regexp="mirror.hetzner.de"
+
+#- name: Remove lists (can help if apt-get update fails)
+#  command: rm -rf /var/lib/apt/lists/*
+
 - name: Update apt cache
   apt: update_cache=yes upgrade=yes
+  ignore_errors: yes
   # apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }} upgrade=yes
 
 ##

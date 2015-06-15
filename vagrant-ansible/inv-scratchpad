@@ -1,7 +1,7 @@
 # file: scratchpad
 
 [hosts]
-hzhjun15a.dmclub.net
+hv.dmclub.net
 
 #The site wide list of mongodb servers
 # the mongo servers need a mongod_port variable set, and they must not conflict.

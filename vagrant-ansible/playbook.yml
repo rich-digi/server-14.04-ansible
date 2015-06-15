@@ -6,10 +6,6 @@
   
   roles: 
 
-  # ---------------------------------------------------------------------
-  # First set up the Firewall (see config.yml for list of rules to apply)
-  - secure-server
-
   # ------------------------------------------------
   # Utilities, system administration and diagnostics
   - common 
@@ -73,4 +69,13 @@
   - varnish
   
   # Add: DNSMAsq, Samba, Squid?, Vagrant, Docker
+
+  # ---------------------------------------------------------------------
+  # Set up the Firewall (see config.yml for list of rules to apply)
+  #
+  # It's safest to do this last if server if behind a proxy (e.g. Host Virtual)
+  # otherwise running a Firewall can cause issues with apt-get update and software installation in general
+  #
+  # Can be done first (which is preferred) on Linode and Hetzner
+  - secure-server
 
