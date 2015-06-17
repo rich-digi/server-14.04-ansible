@@ -42,8 +42,14 @@
 ##
 # Update package list
 #
-- name: Ensure Hetzner's crawlingly slow mirrors are NOT consulted
-  lineinfile: dest=/etc/apt/sources.list state=absent regexp="mirror.hetzner.de"
+#- name: Ensure Hetzner's crawlingly slow mirrors are NOT consulted
+# lineinfile: dest=/etc/apt/sources.list state=absent regexp="mirror.hetzner.de"
+
+##
+# Update mirror location
+#
+- name: Update Ubuntu mirror location for packages 
+  template: src=etc-apt-sources.list.j2 dest=/etc/apt/sources.list owner=root group=root mode=0644
 
 #- name: Remove lists (can help if apt-get update fails)
 #  command: rm -rf /var/lib/apt/lists/*

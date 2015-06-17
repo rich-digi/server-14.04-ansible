@@ -76,6 +76,6 @@
   # It's safest to do this last if server if behind a proxy (e.g. Host Virtual)
   # otherwise running a Firewall can cause issues with apt-get update and software installation in general
   #
-  # Can be done first (which is preferred) on Linode and Hetzner
+  # Can be done first on Linode and Hetzner (which is preferred) 
   - secure-server
 

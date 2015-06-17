@@ -14,6 +14,10 @@ server_ram_gb: 2
 
 timezone: Europe/London
 
+# Ubuntu package mirror - CONSIDER CHANGING THIS IF APT-GET UPDATE FILES FOR ANY REASON
+#package_mirror: ubuntu.mirrors.uk2.net
+package_mirror: mirrors.linode.com
+
 # Firewall
 security_ufw_state: enabled
 security_ufw_ports:

@@ -9,6 +9,7 @@
 
 - name: Install Webmin | Add Webmin repository
   apt_repository: repo='deb http://download.webmin.com/download/repository sarge contrib'
+  ignore_errors: yes
 
 - name: Install Webmin | Install Webmin
   apt: name=webmin state=present update_cache=yes

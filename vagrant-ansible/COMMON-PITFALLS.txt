@@ -1,0 +1,27 @@
+(1) apt-get update fails due to hash sum mismatch
+=================================================
+
+Cause: This is a known issue, and is exacerbated for clients behind proxy caches. Some large organisations and ISPs (especially in remote parts of the world) have transparent caches of which you may not be aware.
+
+The fundamental issue is that the apt repository format is subject to race conditions when a mirror is updated. This problem particularly affects repositories that change rapidly, such as the development release.
+
+Try:
+
+sudo rm /var/lib/apt/lists/*
+
+Then changing mirrors (see config.yml)
+
+
+(2) composer install fails
+==========================
+
+This is due to proxies filtering out headers, tghen ufw banning access as a result. This happens even with URLs that are reachable from the command line using curl / wget
+
+Try:
+
+disabling firewall
+
+uwf disable
+
+
+
