@@ -6,11 +6,11 @@
 # Hostname is important as we need to delete an anonymous MySQL
 # user that is created with this name, make sure you match this
 # up with the output of the command 'hostname' on the server.
-machine_hostname: 'hzhjul15a'
-machine_fqdn: 'hzhjul15a.dmclub.net'
+machine_hostname: 'hzhsep13c'
+machine_fqdn: 'hzhsep13c.dmclub.net'
 
 # This value is used for Apache perfomance tuning
-server_ram_gb: 2
+server_ram_gb: 32
 
 timezone: Europe/London
 
