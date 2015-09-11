@@ -8,8 +8,11 @@
 - name: Install latest stable Node
   shell: nvm install stable
 
-- name: Use the latest stable Node
-  shell: nvm use stable
+- name: Set the default
+  shell: nvm alias default stable
 
-- name: Get the corresponding version of npm
-  shell: curl https://npmjs.org/install.sh | sh
+- name: Use the latest stable Node
+  shell: nvm use default
+
+#- name: Get the corresponding version of npm - no longer needed as npm comes with node these days
+# shell: curl https://npmjs.org/install.sh | sh

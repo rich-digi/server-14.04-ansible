@@ -1,21 +1,21 @@
 ---
 ##
-# Java 8, Undertow and Solr
+# Java 9, Undertow and Solr
 #
 # NOTE: Java cannot be downloaded through an apt cache (e.g. if you are running apt-cacher-ng)
 
 - name: Configure apt to avoid apt cache (if we're using it) for Java
   lineinfile: dest="/etc/apt/apt.conf.d/01Proxy" line="Acquire::http::Proxy { download.oracle.com DIRECT; };" create=yes
 
-- name: Ensure Java 8 is present
+- name: Ensure Java 9 is present
   apt_repository: repo='ppa:webupd8team/java'
 - name: Auto accept oracle jdk license
-  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
-- apt: name=oracle-java8-installer state=present
-- apt: name=oracle-java8-set-default state=present
+  debconf: name='oracle-java9-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+- apt: name=oracle-java9-installer state=present
+- apt: name=oracle-java9-set-default state=present
 
 - name: Download Solr-Undertow
-  get_url: url=https://github.com/bremeld/solr-undertow/releases/download/v1.1.0/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root
+  get_url: url=https://github.com/bremeld/solr-undertow/releases/download/v1.5.0-RC1/solr-undertow-1.5.0-RC1-with-solr-5.3.0.tgz dest=/root
 
 - name: Unarchive Solr-Undertow
-  unarchive: src=/root/solr-undertow-1.1.0-with-solr-4.10.2.tgz dest=/root copy=no
+  unarchive: src=/root/solr-undertow-1.5.0-RC1-with-solr-5.3.0.tgz dest=/root copy=no

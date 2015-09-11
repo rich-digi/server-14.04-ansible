@@ -55,7 +55,7 @@
   # -----
   # Mongo
   # - mongo
-  - php5-mongo 
+  #- php5-mongo 
   
   # -------------------------------
   # Apache Solr running on Undertow !!!
@@ -63,7 +63,7 @@
 
   # -----
   # Redis
-  - DavidWittman.redis  
+  #- DavidWittman.redis  
   
   # --------------------------------
   # Varnish - cacheing reverse proxy !!!

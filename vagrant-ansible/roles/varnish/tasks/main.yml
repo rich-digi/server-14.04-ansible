@@ -1,11 +1,11 @@
 ---
 # tasks file for varnish
 
-- name: Fetch repository key
-  apt_key: url=http://repo.varnish-cache.org/ubuntu/GPG-key.txt state=present
+#- name: Fetch repository key
+#  apt_key: url=http://repo.varnish-cache.org/ubuntu/GPG-key.txt state=present
 
-- name: Add Varnish repository
-  apt_repository: repo="deb http://repo.varnish-cache.org/ubuntu/ trusty varnish-4.0"
+#- name: Add Varnish repository
+#  apt_repository: repo="deb http://repo.varnish-cache.org/ubuntu/ vivid varnish-4.0"
   
 - name: Install Varnish
   apt: pkg=varnish state=latest update_cache=yes

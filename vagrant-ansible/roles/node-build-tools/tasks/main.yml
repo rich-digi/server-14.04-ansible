@@ -5,7 +5,7 @@
 - name: Ensure Yeomam, Bower, Grunt and Gulp are present
   npm: name={{ item }} state=latest global=yes
   with_items:
-    - yo
+    #- yo fails on node v4.0.0
     - bower
     - grunt-cli
     - gulp
