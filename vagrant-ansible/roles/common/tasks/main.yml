@@ -61,11 +61,23 @@
 
 ##
 # Start installing
+# Note: Build essential is a meta-package that contains gcc, g++, make
 #
 - name: Install various common packages
   action: apt pkg={{ item }} state=latest
   tags: common
   with_items:
+    - build-essential
+    - autoconf
+    - automake
+    - libtool
+    - ncurses-dev
+    - libjpeg-dev
+    - libmyodbc 
+    - debconf-utils
+    - subversion
+    - git-core
+    - git-svn
     - expect
     - zip
     - unzip
@@ -74,20 +86,6 @@
     - mailutils
     - samba
     - smbclient
-    - subversion
-    - git-core
-    - git-svn
-    - gcc
-    - g++
-    - autoconf
-    - automake
-    - build-essential
-    - libtool
-    - ncurses-dev
-    - libjpeg-dev
-    - make
-    - libmyodbc 
-    - debconf-utils
     - traceroute
     - ftp
     - ncftp

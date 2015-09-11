@@ -1,9 +1,15 @@
 ---
-- name: ensure ansible's apt_repository dependency is installed
-  apt: pkg=python-apt state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
+#- name: Install NVM
+#  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 
-- name: ensure nodejs apt repository is up to date
-  apt_repository: repo={{ nodejs_ppa }}
+- name: Add NVM to path
+  shell: . /root/.bashrc
 
-- name: ensure nodejs latest stable is installed
-  apt: pkg=nodejs state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
+- name: Install latest stable Node
+  shell: nvm install stable
+
+- name: Use the latest stable Node
+  shell: nvm use stable
+
+- name: Get the corresponding version of npm
+  shell: curl https://npmjs.org/install.sh | sh

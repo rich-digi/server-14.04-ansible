@@ -42,7 +42,9 @@ echo -n "Domain: "
 read DOMAIN
 
 # You'll be asked for the password
-cat ~/.ssh/id_rsa.pub | ssh root@${DOMAIN} "cat >> ~/.ssh/authorized_keys"
+
+#cat ~/.ssh/id_rsa.pub | ssh root@${DOMAIN} "cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh root@${DOMAIN} "cat >> ~/authorized_keys; mkdir -p ~/.ssh; mv ~/authorized_keys ~/.ssh/authorized_keys"
 if [ $? -eq 0 ] 
 then
 	echo $COL_GREEN
