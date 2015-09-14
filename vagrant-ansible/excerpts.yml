@@ -1,9 +1,0 @@
-##
-# Firewall
-#
-# Enable UFW and deny by default
-- ufw: state=enabled policy=deny
-
-# Allow all to access following ports
-- ufw: rule=allow port={{ item }} proto=tcp
-  with_items: firewall

@@ -1,5 +1,0 @@
----
-# handlers file for php5-mongo
-
-- name: restart apache
-  service: name=apache2 state=restarted

@@ -1,4 +1,0 @@
----
-# vars file for nagios-client
-
-nagios_server_ip: 176.58.119.15
