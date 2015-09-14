@@ -15,14 +15,13 @@ echo Running at ${DATE}
 echo
 
 # Colors
-ESC_SEQ="\x1b["
-COL_RESET=$ESC_SEQ"39;49;00m"
-COL_RED=$ESC_SEQ"31;01m"
-COL_GREEN=$ESC_SEQ"32;01m"
-COL_YELLOW=$ESC_SEQ"33;01m"
-COL_BLUE=$ESC_SEQ"34;01m"
-COL_MAGENTA=$ESC_SEQ"35;01m"
-COL_CYAN=$ESC_SEQ"36;01m"
+red=$'\e[1;31m'
+grn=$'\e[1;32m'
+yel=$'\e[1;33m'
+blu=$'\e[1;34m'
+mag=$'\e[1;35m'
+cyn=$'\e[1;36m'
+end=$'\e[0m'
 
 # Make sure the user has an SSH key
 if [ ! -e ~/.ssh/id_rsa.pub ]
@@ -47,13 +46,13 @@ read DOMAIN
 cat ~/.ssh/id_rsa.pub | ssh root@${DOMAIN} "cat >> ~/authorized_keys; mkdir -p ~/.ssh; mv ~/authorized_keys ~/.ssh/authorized_keys"
 if [ $? -eq 0 ] 
 then
-	echo $COL_GREEN
+	echo $green
 	echo "That seems to have worked... Trying to login to server..."
-	echo $COL_RESET
+	echo $end
 	ssh -l root $DOMAIN
 else
-	echo $COL_RED
+	echo $red
 	echo "FAILED"
-	echo $COL_RESET
+	echo $end
 fi
 echo

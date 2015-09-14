@@ -6,11 +6,11 @@
 # Hostname is important as we need to delete an anonymous MySQL
 # user that is created with this name, make sure you match this
 # up with the output of the command 'hostname' on the server.
-machine_hostname: 'linjun12b.dmclub.net'
-machine_fqdn: 'linjun12b.dmclub.net'
+machine_hostname: 'linjun12a.dmclub.net'
+machine_fqdn: 'linjun12a.dmclub.net'
 
 # This value is used for Apache perfomance tuning
-server_ram_gb: 8
+server_ram_gb: 2
 
 timezone: Europe/London
 
@@ -42,8 +42,8 @@ apt_cache_location: 'http://linode-hub.apewave.com' # Must include protocol e.g.
 apt_cache_valid_time: 86400
 
 # Apache
-apache_server_admin: 'webmaster@linjun12b.dmclub.net'
-apache_server_alias: '*.*.linjun12b.dmclub.net'
+apache_server_admin: 'webmaster@linjun12a.dmclub.net'
+apache_server_alias: '*.*.linjun12a.dmclub.net'
 
 # Apache performance tuning
 apache_max_request_memory_usage_mb: 16
@@ -93,7 +93,7 @@ smaba_users:
 # Ruby versions
 rvm1_gpg_key_server: 'hkp://pgp.mit.edu' # keys.gnupg.net has been down a lot lately
 rvm1_rubies:
-    - 'ruby-2.2.3'
+    - 'ruby-2.2-head'
     
 rvm1_default_ruby_version: 'ruby-2.2.3'
 

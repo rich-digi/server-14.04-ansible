@@ -78,5 +78,5 @@
   # otherwise running a Firewall can cause issues with apt-get update and software installation in general
   #
   # Can be done first on Linode and Hetzner (which is preferred) 
-  - secure-server
+  #- secure-server
 

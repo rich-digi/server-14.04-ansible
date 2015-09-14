@@ -75,6 +75,7 @@
     - libjpeg-dev
     - libmyodbc 
     - debconf-utils
+    - libx11-dev
     - subversion
     - git-core
     - git-svn
