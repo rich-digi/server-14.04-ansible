@@ -6,11 +6,11 @@
 # Hostname is important as we need to delete an anonymous MySQL
 # user that is created with this name, make sure you match this
 # up with the output of the command 'hostname' on the server.
-machine_hostname: 'hzhsep13c'
-machine_fqdn: 'hzhsep13c.dmclub.net'
+machine_hostname: 'linode-a.apewave.com'
+machine_fqdn: 'linode-a.apewave.com'
 
 # This value is used for Apache perfomance tuning
-server_ram_gb: 32
+server_ram_gb: 2
 
 timezone: Europe/London
 
@@ -41,8 +41,8 @@ apt_cache_location: 'http://linode-hub.apewave.com' # Must include protocol e.g.
 apt_cache_valid_time: 86400
 
 # Apache
-apache_server_admin: 'webmaster@hzhapr15a.dmclub.net'
-apache_server_alias: '*.*.hzhapr15a.dmclub.net.dmclub.net'
+apache_server_admin: 'webmaster@linode-a.apewave.com'
+apache_server_alias: '*.*.linode-a.apewave.com'
 
 # Apache performance tuning
 apache_max_request_memory_usage_mb: 16
