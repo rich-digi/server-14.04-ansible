@@ -6,11 +6,11 @@
   
   roles: 
 
-  # ------------------------------------------------
-  # Utilities, system administration and diagnostics
-  #- common 
+  # ------------------------------------------------------------
+  # Utilities, system administration, diagnostics and monitoring
+  - common 
+  - sensu
   #- webmin
-  #- nagios-client
 
   # -------------------------------------------
   # LAMP stack, with all our bells-and-whistles
@@ -45,28 +45,28 @@
   
   # ----
   # Node
-  - nodejs
+  #- nodejs
 
   # -----------------------------
   # Yeoman, Bower, Grunt and Gulp
-  - node-build-tools
+  #- node-build-tools
   
   # -----
   # Mongo
   # - mongo
-  - php5-mongo 
+  #- php5-mongo 
   
   # -------------------------------
   # Apache Solr running on Undertow
-  - solr-undertow
+  #- solr-undertow
 
   # -----
   # Redis
-  - DavidWittman.redis  
+  #- DavidWittman.redis  
   
   # --------------------------------
   # Varnish - cacheing reverse proxy
-  - varnish
+  #- varnish
   
   # Add: DNSMAsq, Samba, Squid?, Vagrant, Docker
 

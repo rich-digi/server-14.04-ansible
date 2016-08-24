@@ -22,9 +22,13 @@
 # Set timezone
 #
 - name: Set server timezone
-  command: export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
-  command: echo '{{ timezone }}' > /etc/timezone'
-  command: dpkg-reconfigure -f noninteractive tzdata
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+    DEBCONF_NONINTERACTIVE_SEEN: true
+  command: "{{ item }}"
+  with_items:
+   - echo '{{ timezone }}' > /etc/timezone
+   - dpkg-reconfigure -f noninteractive tzdata
 
 ##
 # Add user www and group www
@@ -36,8 +40,8 @@
 ##
 # Set apt-cache location
 #
-- name: Set apt-cache location (server where we have apt-cache-ng installed)
-  template: src=etc-apt-apt.conf.d-02proxy.j2 dest=/etc/apt/apt.conf.d/02Proxy owner=root group=root mode=0644
+#- name: Set apt-cache location (server where we have apt-cache-ng installed)
+#  template: src=etc-apt-apt.conf.d-02proxy.j2 dest=/etc/apt/apt.conf.d/02Proxy owner=root group=root mode=0644
 
 ##
 # Update package list
@@ -48,7 +52,7 @@
 ##
 # Update mirror location
 #
-- name: Update Ubuntu mirror location for packages 
+- name: Update Debian mirror location for packages 
   template: src=etc-apt-sources.list.j2 dest=/etc/apt/sources.list owner=root group=root mode=0644
 
 #- name: Remove lists (can help if apt-get update fails)

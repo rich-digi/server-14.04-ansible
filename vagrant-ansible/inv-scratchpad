@@ -1,21 +1,5 @@
 # file: scratchpad
 
 [hosts]
-linode-temp.apewave.com
+hzhaug16a.dmclub.net
 
-#The site wide list of mongodb servers
-# the mongo servers need a mongod_port variable set, and they must not conflict.
-#[mongo_servers]
-#scratch.apewave.com mongod_port=2700
-
-#The list of servers where replication should happen, by default include all servers
-#[replication_servers]
-#scratch.apewave.com
-
-#The list of mongodb configuration servers, make sure it is 1 or 3
-#[mongoc_servers]
-#scratch.apewave.com
-
-#The list of servers where mongos servers would run.
-#[mongos_servers]
-#scratch.apewave.com

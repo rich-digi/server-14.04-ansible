@@ -15,7 +15,7 @@ Then changing mirrors (see config.yml)
 (2) composer install fails
 ==========================
 
-This is due to proxies filtering out headers, tghen ufw banning access as a result. This happens even with URLs that are reachable from the command line using curl / wget
+This is due to proxies filtering out headers, then ufw banning access as a result. This happens even with URLs that are reachable from the command line using curl / wget
 
 Try:
 
